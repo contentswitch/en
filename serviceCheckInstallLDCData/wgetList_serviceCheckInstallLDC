@@ -1,0 +1,26 @@
+SYS=`arch`
+X86Newker=2.6.37
+KERNEL=`uname -r|awk -F'-' '{print $1}'`
+LDCdownload='http://$DOWNLOADSERVICE/ldc_setup070403.tgz'
+Iptablesdownload='http://$DOWNLOADSERVICE/iptables'
+Hostsallowdownload='http://$DOWNLOADSERVICE/hosts.allow'
+DOWNLOADSERVICE=223.203.98.51
+DOWNLOADSERVICE2=61.240.134.172
+
+
+                if [ ! -f iptables ];then
+                        wget -T 5 -t 2 -S  http://$DOWNLOADSERVICE/iptables -O iptables
+                        if [ $? -ne 0 ];then
+                              wget -T 5 -t 2 -S  http://$DOWNLOADSERVICE2/iptables -O iptables
+                        fi
+                fi
+
+
+                if [ ! -f ldc_setup070403.tgz ];then
+                        wget -T 5 -t 2 -O ldc_setup070403.tgz http://$DOWNLOADSERVICE/ldc_setup070403.tgz
+                        if [ $? -ne 0 ];then
+                             wget -T 5 -t 2 -O ldc_setup070403.tgz http://$DOWNLOADSERVICE2/ldc_setup070403.tgz
+                        fi
+                fi
+    wget -T5 -t3 -q http://$DOWNLOADSERVICE/download/CCTCPv3/v3.12.sh
+
