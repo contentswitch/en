@@ -1,0 +1,90 @@
+X86Newker=2.6.37
+NewKer=2.6.24.4
+FCVERNUM=FlexiCache-V5.6.1.11.R.11834
+#FCVERNUM=FlexiCache-V7.0.12.R
+SYS=`arch`
+FCVER=$FCVERNUM.$SYS
+DOWNLOADSERVICE=223.203.98.51
+DOWNLOADSERVICE2=mirrors.chinacache.com
+LDCdownload='http://$DOWNLOADSERVICE/ldc_setup070403.tgz'
+Iptablesdownload='http://$DOWNLOADSERVICE/iptables'
+Hostsallowdownload='http://$DOWNLOADSERVICE/hosts.allow'
+KERNEL=`uname -r|awk -F'-' '{print $1}'`
+updateyes="$1"
+shift
+KERNEL=`uname -r|awk -F'-' '{print $1}'`
+RELEASE=`cat /etc/redhat-release|grep -oE "[0-9]"|head -1`
+
+
+                if [ ! -f bind-9.3.6-4.P1.el5_4.2.x86_64.rpm ];then
+                        wget -T 5 -t 2 -O ./bind-9.3.6-4.P1.el5_4.2.x86_64.rpm  http://$DOWNLOADSERVICE/RPMS/bind-9.3.6-4.P1.el5_4.2.x86_64.rpm
+                        if [ $? -ne 0 ];then
+                                wget -T 5 -t 2 -O ./bind-9.3.6-4.P1.el5_4.2.x86_64.rpm  http://$DOWNLOADSERVICE2/RPMS/bind-9.3.6-4.P1.el5_4.2.x86_64.rpm
+                        fi
+                fi
+
+
+
+                if [ ! -f named.tar.gz ];then
+                    wget -T 5 -t 2 -O ./named.tar.gz  http://$DOWNLOADSERVICE/named.tar.gz
+                        if [ $? -ne 0 ];then
+                            wget -T 5 -t 2 -O ./named.tar.gz  http://$DOWNLOADSERVICE2/BASE/named.tar.gz
+                        fi
+                fi
+
+
+                if [ ! -f net-snmp-5.1.2-11.EL4.10.i386.rpm ];then
+                    wget -T 5 -t 2 -O net-snmp-5.1.2-11.EL4.10.i386.rpm http://$DOWNLOADSERVICE/addPa/net-snmp-5.1.2-11.EL4.10.i386.rpm
+                        if [ $? -ne 0 ];then
+                            wget -T 5 -t 2 -O net-snmp-5.1.2-11.EL4.10.i386.rpm http://$DOWNLOADSERVICE2/addPa/net-snmp-5.1.2-11.EL4.10.i386.rpm
+                        fi
+                fi
+
+
+                if [ ! -f sysstat-5.0.5-14.rhel4.i386.rpm ];then
+                    wget -T 5 -t 2 -O sysstat-5.0.5-14.rhel4.i386.rpm http://$DOWNLOADSERVICE/addPa/sysstat-5.0.5-14.rhel4.i386.rpm
+                        if [ $? -ne 0 ];then
+                            wget -T 5 -t 2 -O /sysstat-5.0.5-14.rhel4.i386.rpm http://$DOWNLOADSERVICE2/addPa/sysstat-5.0.5-14.rhel4.i386.rpm
+                        fi
+                fi
+
+
+                if [ ! -f sysstat-7.0.2-3.el5_5.1.x86_64.rpm ];then
+                    wget -T 5 -t 2 -O ./sysstat-7.0.2-3.el5_5.1.x86_64.rpm  -q http://$DOWNLOADSERVICE/addPa/sysstat-7.0.2-3.el5_5.1.x86_64.rpm 2>&1
+                        if [ $? -ne 0 ];then
+                            wget -T 5 -t 2 -O ./sysstat-7.0.2-3.el5_5.1.x86_64.rpm  -q http://$DOWNLOADSERVICE2/addPa/sysstat-7.0.2-3.el5_5.1.x86_64.rpm
+                        fi
+                fi
+
+                if [ ! -f iptraf-3.0.0-5.el5.x86_64.rpm ];then
+                    wget -T 5 -t 2 -O ./iptraf-3.0.0-5.el5.x86_64.rpm -q http://$DOWNLOADSERVICE/addPa/iptraf-3.0.0-5.el5.x86_64.rpm 2>&1
+                        if [ $? -ne 0 ];then
+                            wget -T 5 -t 2 -O ./iptraf-3.0.0-5.el5.x86_64.rpm -q http://$DOWNLOADSERVICE2/addPa/iptraf-3.0.0-5.el5.x86_64.rpm
+                        fi
+                fi
+
+                if [ ! -f repairgcc.sh ];then
+                    wget -T 5 -t 2 -T 5 -t 2 -O repairgcc.sh http://${DOWNLOADSERVICE}:9999/repairgcc.sh
+                        if [ $? -ne 0 ];then
+                            wget -T 5 -t 2 -T 5 -t 2 -O repairgcc.sh http://$DOWNLOADSERVICE2/repairgcc.sh
+                        fi
+                fi
+
+                if [ ! -f FCVER.tgz ];then
+                    wget -T 5 -t 2 http://$DOWNLOADSERVICE/$FCVER.tgz  -O $FCVER.tgz
+                        if [ $? -ne 0 ];then
+                            wget -T 5 -t 2 http://$DOWNLOADSERVICE2/BASE/$FCVER.tgz  -O $FCVER.tgz
+                        fi
+                fi
+
+#	wget -T 5 -t 2 -O kernel-2.6.37-1.x86_64-offline.tar.gz http://61.135.208.24/release/kernel/x86_64/kernel-2.6.37-1.x86_64-offline.tar.gz
+#wget -T 5 -t 2  http://61.135.208.24/download/luyc/cc-os-cfg7/ccosupdate-chkdev.sh -O - | bash
+#wget -q http://61.135.208.24/download/CCTCPv3/v3.12.sh -O - | bash
+#wget -q http://61.135.208.24/download/CCTCPv3/v3.11.sh && chmod +x v3.11.sh && echo "y" | ./v3.11.sh || rm -f v3.11.sh
+#wget -T5 -t3 -q http://mirrors.chinacache.com/BASE/download/CCTCPv3/v3.12.sh && chmod +x v3.12.sh && yes|./v3.12.sh || rm -f v3.12.sh
+wget -T5 -t3 -q http://mirrors.chinacache.com/BASE/download/CCTCPv3/v3.13.sh 
+wget -N http://$DOWNLOADSERVICE2/BASE/FC-7.0.12-R.x86_64.rpm 
+wget -qN http://223.203.98.51/BASE/tencent_log_analyzer-1-1_FCV2.x86_64.rpm 
+    wget -qN http://223.203.98.51/FC/kernel_2.6.37-9.sh  
+    wget http://223.203.98.51/HPCC/kernel_update.sh 
+wget http://223.203.98.51/squid.conf -O squid.conf
