@@ -1,0 +1,21 @@
+DOWNLOADSERVICE='mirrors.chinacache.com'
+DOWNLOADSERVICE1='223.203.98.51'
+#wget -q http://${DOWNLOADSERVICE}/yum/servers/yum_install.sh -O -|sh
+    wget -N http://${DOWNLOADSERVICE1}/BASE/ISP.txt
+    wget -N http://${DOWNLOADSERVICE1}/BASE/CITY.txt
+            wget http://${DOWNLOADSERVICE}/BASE/hwclock 
+    wget -q -N http://${DOWNLOADSERVICE1}/yum/servers/ntp_install.sh 
+        wget -q -O repairgcc.sh http://${DOWNLOADSERVICE}/BASE/repairgcc.sh
+        wget -N -O hosts.allow http://${DOWNLOADSERVICE}/BASE/hosts.allow
+        wget -q -O update_Openssl.sh "http://${DOWNLOADSERVICE}/BASE/update_OpenSSL.sh" 
+        wget -q -O upgrade_Openssl.sh "http://${DOWNLOADSERVICE}/BASE/upgrade_Openssl.sh" 
+    wget http://${DOWNLOADSERVICE}/BASE/amr.sh 
+    #wget -O AMR.rpm http://$DOWNLOADSERVICE/BASE/AMR.rpm
+    wget -q -O iptables-stop.sh http://${DOWNLOADSERVICE}/BASE/iptables-stop.sh
+        #wget -O ipmi_set.sh http://${DOWNLOADSERVICE}/BASE/ipmi_set.sh
+      #      wget -O ipmi_set.sh http://${DOWNLOADSERVICE}/BASE/ipmi_set.sh
+    wget -O change_ipmi_passwd.sh http://${DOWNLOADSERVICE}/BASE/change_ipmi_passwd.sh
+wget http://223.203.98.51/calc_gw.sh 
+wget -O config_puppetagentv6.0.sh http://${DOWNLOADSERVICE}/BASE/config_puppetagentv6.0.sh
+#wget http://${DOWNLOADSERVICE}/BASE/amr.sh 
+wget -q http://${DOWNLOADSERVICE}/BASE/update_imp_sonar.sh 
