@@ -1,0 +1,8 @@
+DOWNLOADSERVICE='mirrors.chinacache.com'
+DOWNLOADSERVICE1=223.203.98.51
+DOWNLOADSERVICE2='61.135.208.24'
+
+wget http://${DOWNLOADSERVICE1}/yum/servers/yum_install.sh
+wget -q -N -O serviceCheck_Base.sh http://${DOWNLOADSERVICE1}/BASE/serviceCheck_Base.sh
+            wget -q -N -O serviceCheck_installFC.sh http://${DOWNLOADSERVICE1}/FC/serviceCheck_installFC.sh
+            wget -T 5 -t 2 -q -N -O serviceCheck_installLDC.sh http://${DOWNLOADSERVICE1}/serviceCheck_installLDC.sh
