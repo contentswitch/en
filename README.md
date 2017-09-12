@@ -14,9 +14,12 @@ nginx服务器搭建方法 (待续)
 a. 下载content.tar.gz后, 解压到/root
 
 b. 执行bash content/serviceCheckBaseData/BASE/serviceCheck_Base.sh 
+
 hostname参考:
 待续
+
 c. 执行bash content/serviceCheckInstallFCData/FC/serviceCheck_installFC.sh
+
 d. 执行bash content/serviceCheckInstallLDCData/serviceCheck_installLDC.sh (不要安装iptables)
 
 
