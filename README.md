@@ -16,7 +16,7 @@ a. 下载content.tar.gz后, 解压到/root
 b. 执行bash content/serviceCheckBaseData/BASE/serviceCheck_Base.sh 
 
 hostname参考:
-待续
+https://github.com/contentswitch/environment/blob/master/hostname_refer
 
 c. 执行bash content/serviceCheckInstallFCData/FC/serviceCheck_installFC.sh
 
