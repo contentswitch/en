@@ -1,0 +1,51 @@
+1.. 卸载旧系统
+rpm -e sms
+rpm -e FC
+rpm -e squid
+killall nginx
+    
+2.. 添加用户
+useradd squid 
+  
+3.. 安装rpm包
+etc.tar.gz
+
+
+rpm -Uvh http://118.126.12.160/fc/src/customize/Based-7.0.SVN.16957/rdb/FC-7.0.278-C.rdb.27424.x86_64.rpm
+cd /usr/local/squid/
+rm -rf etc
+tar -xvf etc.tar.gz (附件中)
+/usr/local/squid/bin/SquidRunningMode.sh -m
+service flexicache restart
+    
+4.. 查看
+[root@issedge squid]# netstat -tlnp | grep fc
+tcp 0 0 0.0.0.0:65531 0.0.0.0:* LISTEN 12865/(fc-cache) 
+tcp 0 0 0.0.0.0:65532 0.0.0.0:* LISTEN 12864/(fc-cache) 
+tcp 0 0 0.0.0.0:65533 0.0.0.0:* LISTEN 12863/(fc-cache) 
+tcp 0 0 0.0.0.0:65534 0.0.0.0:* LISTEN 12862/(fc-cache) 
+[root@issedge squid]# 
+[root@issedge squid]# netstat -tlnp | grep nginx
+tcp 0 0 0.0.0.0:3170 0.0.0.0:* LISTEN 13420/nginx 
+tcp 0 0 0.0.0.0:4005 0.0.0.0:* LISTEN 13420/nginx 
+tcp 0 0 0.0.0.0:9001 0.0.0.0:* LISTEN 13420/nginx 
+tcp 0 0 0.0.0.0:10345 0.0.0.0:* LISTEN 13420/nginx 
+tcp 0 0 0.0.0.0:8010 0.0.0.0:* LISTEN 13420/nginx 
+tcp 0 0 0.0.0.0:50123 0.0.0.0:* LISTEN 13420/nginx 
+tcp 0 0 0.0.0.0:1935 0.0.0.0:* LISTEN 13420/nginx 
+tcp 0 0 0.0.0.0:80 0.0.0.0:* LISTEN 13420/nginx 
+tcp 0 0 0.0.0.0:30000 0.0.0.0:* LISTEN 13420/nginx 
+tcp 0 0 0.0.0.0:8080 0.0.0.0:* LISTEN 13420/nginx 
+tcp 0 0 0.0.0.0:8017 0.0.0.0:* LISTEN 13420/nginx 
+tcp 0 0 0.0.0.0:8088 0.0.0.0:* LISTEN 13420/nginx 
+tcp 0 0 0.0.0.0:5081 0.0.0.0:* LISTEN 13420/nginx 
+tcp 0 0 0.0.0.0:40123 0.0.0.0:* LISTEN 13420/nginx 
+tcp 0 0 0.0.0.0:94 0.0.0.0:* LISTEN 13420/nginx
+5. 日志
+/data/proclog/log/squid/access.log
+
+6. 配置路径
+nginx.conf  /usr/local/squid/bin/lscs/conf/
+squid.conf /usr/local/squid/etc
+7.清除缓存
+purgeGetopts.sh -A ALL
