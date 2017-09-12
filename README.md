@@ -8,6 +8,7 @@ b. 使能nginx服务使外面可以访问到, 访问方法:  wget http://isssour
 
 nginx服务器搭建方法 (待续)
 
+
 2. 在新机器(待安装机器)上执行
 
 a. 下载content.tar.gz后, 解压到/root
@@ -17,6 +18,7 @@ hostname参考:
 待续
 c. 执行bash content/serviceCheckInstallFCData/FC/serviceCheck_installFC.sh
 d. 执行bash content/serviceCheckInstallLDCData/serviceCheck_installLDC.sh (不要安装iptables)
+
 
 3. 启动FC
 方法待续
