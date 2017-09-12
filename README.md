@@ -23,6 +23,9 @@ c. 执行bash content/serviceCheckInstallFCData/FC/serviceCheck_installFC.sh
 d. 执行bash content/serviceCheckInstallLDCData/serviceCheck_installLDC.sh (不要安装iptables)
 
 
-3. 启动FC
+3. 安装并启动FC
+方法待续
+
+4. 安装并启动SMS
 方法待续
 
