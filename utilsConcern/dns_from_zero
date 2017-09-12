@@ -1,0 +1,119 @@
+一. Centos6.5
+1. 安装bind及组件
+yum install bind bind-utils bind-libs
+2. 修改配置文件
+vi /etc/named.conf
+//
+// named.conf
+//
+// Provided by Red Hat bind package to configure the ISC BIND named(8) DNS
+// server as a caching only nameserver (as a localhost DNS resolver only).
+//
+// See /usr/share/doc/bind*/sample/ for example named configuration files.
+//
+options {
+listen-on port 53 { any; };
+listen-on-v6 port 53 { ::1; };
+directory "/var/named";
+dump-file "/var/named/data/cache_dump.db";
+statistics-file "/var/named/data/named_stats.txt";
+memstatistics-file "/var/named/data/named_mem_stats.txt";
+allow-query { any; };
+recursion yes;
+dnssec-enable yes;
+dnssec-validation yes;
+/* Path to ISC DLV key */
+bindkeys-file "/etc/named.iscdlv.key";
+managed-keys-directory "/var/named/dynamic";
+};
+logging {
+channel default_debug {
+file "data/named.run";
+severity dynamic;
+};
+};
+zone "." IN {
+type hint;
+file "named.ca";
+};
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+3. 修改zone文件
+vi /etc/named.rfc1912.zones
+// named.rfc1912.zones: 
+// 
+// Provided by Red Hat caching-nameserver package 
+// 
+// ISC BIND named zone configuration for zones recommended by 
+// RFC 1912 section 4.1 : localhost TLDs and address zones 
+// and http://www.ietf.org/internet-drafts/draft-ietf-dnsop-default-local-zones-02.txt 
+// (c)2007 R W Franks 
+// 
+// See /usr/share/doc/bind*/sample/ for example named configuration files. 
+// 
+
+zone "localhost.localdomain" IN { 
+type master; 
+file "named.localhost"; 
+allow-update { none; }; 
+}; 
+
+zone "localhost" IN { 
+type master; 
+file "named.localhost"; 
+allow-update { none; }; 
+}; 
+
+zone "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa" IN { 
+type master; 
+file "named.loopback"; 
+allow-update { none; }; 
+}; 
+
+zone "1.0.0.127.in-addr.arpa" IN { 
+type master; 
+file "named.loopback"; 
+allow-update { none; }; 
+}; 
+
+zone "0.in-addr.arpa" IN { 
+type master; 
+file "named.empty"; 
+allow-update { none; }; 
+}; 
+
+//realhostip.com的正向区域 
+zone "realhostip.com" IN { 
+type master; 
+file "named.realhostip.com"; 
+allow-update { none; }; 
+}; 
+//realhostip.com的反向区域 
+zone "1.16.172.in-addr.arpa" IN { 
+type master; 
+file "172.16.1.arpa"; 
+allow-update { none; }; 
+};
+4. 创建正向和反向区域资源文件
+vi /var/named/named.realhostip.com
+named.realhostip.com
+ 
+vi /var/named/172.16.1.arpa
+172.16.1.arpa
+ 
+5. 启动
+service named start
+6. 修改/etc/resolv.conf
+nameserver 127.0.0.1 (如果DNS服务器安装在自己机器上)
+7. 查看
+[root@ipupper named]# nslookup 172-16-1-50.realhostip.com 
+Server: 127.0.0.1
+Address: 127.0.0.1#53
+Name: 172-16-1-50.realhostip.com
+Address: 172.16.1.50
+[root@ipupper named]# nslookup 172-16-1-51.realhostip.com 
+Server: 127.0.0.1
+Address: 127.0.0.1#53
+Name: 172-16-1-51.realhostip.com
+Address: 172.16.1.51
+ 
