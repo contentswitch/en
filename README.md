@@ -24,8 +24,10 @@ d. 执行bash content/serviceCheckInstallLDCData/serviceCheck_installLDC.sh (不
 
 
 3. 安装并启动FC
-方法待续
+
+https://github.com/contentswitch/environment/blob/master/fcConcern/fc_from_zero
 
 4. 安装并启动SMS
-方法待续
+
+https://github.com/contentswitch/environment/blob/master/smsConcern/sms_from_zero
 
