@@ -1,0 +1,17 @@
+1.. 卸载旧系统
+rpm -e sms
+   
+2.. 安装和加载
+nginx.conf
+rpm -Uvh http://118.126.12.160/sms/sms-2.2.160-2-r73032.x86_64.rpm
+/usr/local/sms/sbin/nginx -c /usr/local/sms/conf/nginx.conf (配置参考附件)
+   
+3. 查看
+[root@issupper conf]# ps aux|grep nginx
+root 7407 0.0 0.0 61232 736 pts/1 S+ 10:47 0:00 grep nginx
+root 23360 0.0 6.5 343424 263912 ? Ss 09:27 0:00 nginx: master process /usr/local/sms/sbin/nginx -c /usr/local/sms/conf/swfNginx.conf
+root 23361 0.8 7.2 375004 295512 ? S 09:27 0:42 nginx: worker process 
+root 23365 0.7 7.2 375004 295500 ? S 09:27 0:34 nginx: worker process 
+root 23366 98.8 7.2 375004 295460 ? R 09:27 79:16 nginx: worker process 
+root 23367 0.7 7.2 375004 295520 ? S 09:27 0:35 nginx: worker process
+root 23368 0.0 6.5 343424 265192 ? S 09:27 0:00 nginx: cache manager process
