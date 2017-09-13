@@ -1,13 +1,24 @@
+1. 启动命令
 amr restart dm
+amr enable dm
 
-
-把所有的Multiupload action的配置都删了, 就不会上传了
-
+2. 查看状态
 //查看dm状态
 dm status
 
 //dm日志
 amr showlog dm
 
+3. 配置
 //dm配置文件路径
 /Application/dm/etc/dir.d
+
+4. 删除上传
+vim /Application/dm/etc/dir.d/DM-SMS.yaml.default
+
+把所有的Action: MultiUpload的配置都删了, 就不会上传了
+
+
+
+
+
