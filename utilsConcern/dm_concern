@@ -9,3 +9,5 @@ dm status
 //dm日志
 amr showlog dm
 
+//dm配置文件路径
+/Application/dm/etc/dir.d
