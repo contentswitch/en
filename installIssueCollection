@@ -45,3 +45,11 @@ key "rndckey" {
 };
 
 service named restart
+
+2. dm安装不了
+下载: dm.tar.gz (下载路径: )
+cd /Application
+ tar -xvf dm.tar.gz 
+ amr restart dm
+ amr enable dm
+ amr 
