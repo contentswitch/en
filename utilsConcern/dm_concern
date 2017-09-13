@@ -1,6 +1,7 @@
-1. 启动命令
+1. 启动及关闭命令
 amr restart dm
 amr enable dm
+amr disable dm
 
 2. 查看状态
 //查看dm状态
