@@ -2,3 +2,10 @@ amr restart dm
 
 
 把所有的Multiupload action的配置都删了, 就不会上传了
+
+//查看dm状态
+dm status
+
+//dm日志
+amr showlog dm
+
